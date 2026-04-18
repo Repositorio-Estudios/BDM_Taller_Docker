@@ -1,0 +1,44 @@
+services:
+  core:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: core_container
+    ports:
+      - ""
+    volumes:
+      - 
+
+  # Contenedores de MongoDB
+  mongodb_articulos:
+    image: mongo:6.0
+    container_name: mongodb_articulos
+    ports:
+      - ""
+    volumes:
+      - 
+
+  mongodb_personas:
+    image: mongo:6.0
+    container_name: mongodb_personas
+    ports:
+      - ""
+    volumes:
+      - 
+
+  mongodb_ventas:
+    image: mongo:6.0
+    container_name: mongodb_ventas
+    ports:
+      - ""
+    volumes:
+      - 
+
+  # Contenedor de SQLite
+  sqlite-db:
+    image: nouchka/sqlite3
+    container_name: sqlite-db
+    volumes:
+      - ./data:/data
+    ports:
+      - "3308:3306" 
