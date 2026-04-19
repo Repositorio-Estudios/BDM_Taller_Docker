@@ -1,0 +1,13 @@
+# Manipulación y análisis de datos
+pandas>=2.2.0
+
+# Visualización
+matplotlib>=3.9.0
+
+# Peticiones HTTP
+requests>=2.32.0
+
+# Kernel de Jupyter para VSCode
+ipykernel>=6.29.0
+jupyter>=1.0.0
+
