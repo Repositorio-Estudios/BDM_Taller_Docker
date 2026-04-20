@@ -57,15 +57,30 @@ get '/load_data' => sub {
 
 # Rutas para obtener datos de MongoDB
 get '/mongo/personas' => sub {
-
+    my $c          = shift;
+    my $client     = MongoDB::MongoClient->new(host => 'mongodb://mongodb_personas:27017');
+    my $collection = $client->get_database('almacen')->get_collection('personas');
+    my @docs       = $collection->find()->all();
+    for my $doc (@docs) { delete $doc->{_id} }
+    $c->render(json => \@docs);
 };
 
 get '/mongo/articulos' => sub {
-
+    my $c          = shift;
+    my $client     = MongoDB::MongoClient->new(host => 'mongodb://mongodb_articulos:27017');
+    my $collection = $client->get_database('almacen')->get_collection('articulos');
+    my @docs       = $collection->find()->all();
+    for my $doc (@docs) { delete $doc->{_id} }
+    $c->render(json => \@docs);
 };
 
 get '/mongo/ventas' => sub {
-
+    my $c          = shift;
+    my $client     = MongoDB::MongoClient->new(host => 'mongodb://mongodb_ventas:27017');
+    my $collection = $client->get_database('almacen')->get_collection('ventas');
+    my @docs       = $collection->find()->all();
+    for my $doc (@docs) { delete $doc->{_id} }
+    $c->render(json => \@docs);
 };
 
 # Rutas para obtener datos de SQLite

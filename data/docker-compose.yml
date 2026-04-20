@@ -1,44 +1,55 @@
 services:
+
   core:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: core_container
     ports:
-      - ""
+      - "8080:8080"
     volumes:
-      - 
+      - ./almacen.sqlite:/app/data/almacen.sqlite
+    depends_on:
+      - mongodb_articulos
+      - mongodb_personas
+      - mongodb_ventas
 
-  # Contenedores de MongoDB
   mongodb_articulos:
     image: mongo:6.0
     container_name: mongodb_articulos
     ports:
-      - ""
+      - "27017:27017"
     volumes:
-      - 
+      - mongo_articulos_data:/data/db
+      - .:/data
 
   mongodb_personas:
     image: mongo:6.0
     container_name: mongodb_personas
     ports:
-      - ""
+      - "27018:27017"
     volumes:
-      - 
+      - mongo_personas_data:/data/db
+      - .:/data
 
   mongodb_ventas:
     image: mongo:6.0
     container_name: mongodb_ventas
     ports:
-      - ""
+      - "27019:27017"
     volumes:
-      - 
+      - mongo_ventas_data:/data/db
+      - .:/data
 
-  # Contenedor de SQLite
   sqlite-db:
     image: nouchka/sqlite3
     container_name: sqlite-db
     volumes:
-      - ./data:/data
-    ports:
-      - "3308:3306" 
+      - .:/data
+    stdin_open: true
+    tty: true
+
+volumes:
+  mongo_articulos_data:
+  mongo_ventas_data:
+  mongo_personas_data:
