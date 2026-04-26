@@ -22,7 +22,7 @@ sub get_sqlite {
 # Función para registrar mensajes de depuración
 sub log_debug {
     my ($message) = @_;
-    my $log_file = '/app/data/debug.log';  # Especifica la ruta completa al archivo de log
+    my $log_file = '/app/data/debug.log';
     open my $fh, '>>', $log_file or die "No se puede abrir el archivo: $!";
     print $fh localtime() . " - $message\n";  # Incluye timestamp
     close $fh;
